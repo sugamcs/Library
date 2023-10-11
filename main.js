@@ -1,5 +1,7 @@
 const myLibrary = []
 
+const books = document.querySelector('.books')
+
 function Book(title,author,pages,read){
     this.title = title
     this.author = author
@@ -12,56 +14,28 @@ function Book(title,author,pages,read){
     }
 
 }
+const title = document.querySelector('#title').value
+const author = document.querySelector('#author').value
+const pages = document.querySelector('#pages').value
+const read = document.querySelector('#read').value
+const submitBtn = document.querySelector('#submit')
+
 
 
 function addBookToLibrary() {
-    const title = prompt("Book title: ")
-    const author = prompt('Author: ')
-    const pages = prompt('Pages: ')
-    const read = prompt('Read status(yes/no): ')
+    myLibrary.forEach(book => {
+        book.addEventListener('click',)
+    })
+    }
+    
 
-    const newBook = new Book(title,author,pages,read)
-    myLibrary.push(newBook)
-    displayBooks()
-
-}
+    
 function displayBooks() {
-    const booksContainer = document.querySelector(".books");
-
-    // Clear the previous content in the books container
-    booksContainer.innerHTML = "";
-
-    // Iterate through myLibrary and create elements for each book
-    myLibrary.forEach((book, index) => {
-        const bookDiv = document.createElement("div");
-        bookDiv.classList.add("book");
-        bookDiv.innerHTML = `
-            <h2>${book.title}</h2>
-            <p>Author: ${book.author}</p>
-            <p>Pages: ${book.pages}</p>
-            <p>Read: ${book.read ? "Yes" : "No"}</p>
-        `;
-
-        booksContainer.appendChild(bookDiv);
-    });
 }
 
-const addBooksButton = document.querySelector('#add-book');
-addBooksButton.addEventListener("click", addBookToLibrary);
-
-// You can manually add some books for testing:
-const book1 = new Book("Deep Work", "Cal Newport", 248, false);
-const book2 = new Book("The Catcher in the Rye", "J.D. Salinger", 214, true);
-myLibrary.push(book1, book2);
-
-// Display the initial books
-displayBooks();
-
-
-
-
-
-
-
-
-
+const book1 = new Book("Deep work", "Cal Newport", 333, true)
+// books.innerHTML = `<h2>${book.title}</h2>
+// <p>Author: ${book.author}</p>    make the loop first
+// <p>Pages: ${book.pages}</p>
+// <p>Read: ${book.read ? "Yes" : "No"}</p>`
+console.log(book1.info())
