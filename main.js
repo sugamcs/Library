@@ -3,6 +3,17 @@ const bookForm = document.querySelector('form');
 const bookList = document.querySelector('.books');
 
 function addBookToLibrary(title, author, pages, read) {
+    const normalizedRead = read.toLowerCase();
+    
+    // Check if the normalized input is 'yes', 'no', 'y', or 'n'
+    if (normalizedRead === 'yes' || normalizedRead === 'y') {
+        read = 'Yes';
+    } else if (normalizedRead === 'no' || normalizedRead === 'n') {
+        read = 'No';
+    } else {
+        // Default to 'No' if not recognized as 'Yes' or 'No'
+        read = 'No';
+    }
     const book = { title, author, pages, read };
     myLibrary.push(book);
     displayBooks();
@@ -17,7 +28,7 @@ function displayBooks() {
             <h2>${book.title}</h2>
             <p>Author: ${book.author}</p>
             <p>Pages: ${book.pages}</p>
-            <p>Read: ${book.read ? 'Yes' : 'No'}</p>
+            <p>Read(yes/no): ${book.read}</p>
             <button class="delete-button" data-index="${index}">Delete</button>
         `;
         bookList.appendChild(bookCard);
