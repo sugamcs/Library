@@ -75,6 +75,7 @@ button:hover {
     margin: 10px;
     border-radius: 5px;
     background-color: #4d99ef;
+    color: white;
 }
 .header {
     padding-left: 200px;
