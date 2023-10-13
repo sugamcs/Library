@@ -8,10 +8,9 @@ function addBookToLibrary(title, author, pages, read) {
     displayBooks();
 }
 
-
 function displayBooks() {
-    bookList.innerHTML = ''; 
-    myLibrary.forEach(book => {
+    bookList.innerHTML = '';
+    myLibrary.forEach((book, index) => {
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-card');
         bookCard.innerHTML = `
@@ -19,23 +18,36 @@ function displayBooks() {
             <p>Author: ${book.author}</p>
             <p>Pages: ${book.pages}</p>
             <p>Read: ${book.read ? 'Yes' : 'No'}</p>
+            <button class="delete-button" data-index="${index}">Delete</button>
         `;
         bookList.appendChild(bookCard);
     });
+
+    // Select all "Delete" buttons after displaying the books and add event listeners
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const index = this.getAttribute('data-index');
+            deleteBook(index);
+        });
+    });
 }
 
+function deleteBook(index) {
+    myLibrary.splice(index, 1);
+    displayBooks();
+}
 
 bookForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read');
+    const read = document.getElementById('read').value;
 
     addBookToLibrary(title, author, pages, read);
     bookForm.reset();
 });
-
 
 addBookToLibrary('Deep Work', 'Cal Newport', 248, 'Yes');
 addBookToLibrary('The Catcher in the Rye', 'J.D. Salinger', 214, 'No');
